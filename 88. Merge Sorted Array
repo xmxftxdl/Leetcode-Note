@@ -1,0 +1,24 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        nums1.resize(m);
+        if(m==0){
+            nums1=nums2;
+            return;
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<nums1.size();j++){
+            if(nums2[i]<nums1[j]){
+                nums1.insert(nums1.begin()+j,nums2[i]);
+                break;
+            }
+            if(nums2[i]>=nums1[nums1.size()-1]){
+                nums1.push_back(nums2[i]);
+                break;
+            }
+        }
+    }
+    }
+};
+//Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
+//Enter:[1,2,3]and [1,3,5] output:[1,1,2,3,3,5]
