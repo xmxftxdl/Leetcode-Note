@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+      int num=65535;// INT_MAX
+      int sum;
+      int s;
+      int li;
+        for(int i=0;i<nums.size();i++){
+            for(int j=i+1;j<nums.size();j++){
+                for(int k=j+1;k<nums.size();k++){
+                    s=nums[i]+nums[j]+nums[k];
+                    if(s>=target){
+                        sum=s-target;
+                    }
+                    else
+                        sum=target-s;
+                    if(sum<num){
+                        num=sum;
+                        li=nums[i]+nums[j]+nums[k];
+                    }
+                    
+                }
+            }
+        }
+    return li;
+    }
+};
+ //Find three integers in nums such that the sum is closest to target. Return the sum of the three integers.
+ //Given array nums = [-1, 2, 1, -4], and target = 1.
+ //The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
