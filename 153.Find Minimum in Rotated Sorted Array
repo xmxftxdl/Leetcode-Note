@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        if(nums.size()==1)
+            return nums[0];
+        int i=0;
+        while(nums[i]<nums[i+1]){
+            i++;
+            if(i==nums.size()-1)
+                return nums[0];
+        }
+    return nums[i+1];
+    }
+};
+//Find the minimum element in a rotated array.
+//Input: [4,5,6,7,0,1,2]
+//Output: 0
+//optimal method:binary search O(logn), not linear search O(n)
