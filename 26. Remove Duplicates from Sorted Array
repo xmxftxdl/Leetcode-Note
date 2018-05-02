@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=nums.size()-1, size = nums.size();
+        int j;
+        int len= nums.size();
+        while(i>0){
+            int count=0;    
+            for(j=i-1;j>=0;j--) 
+            {
+                if(nums[i]==nums[j])
+                    count++;
+                else
+                    break;
+            }
+            for (int m = i - count + 1; m < len - count; m++)
+                nums[m] = nums[m + count];
+            len=len-count;
+            i = i - count - 1;
+        }
+   
+    return len;
+    }
+};
+//remove the duplicates in-place such that each element appear only once and return the new length.
+//example
+//input:[1,1,2,3,3] output:3
