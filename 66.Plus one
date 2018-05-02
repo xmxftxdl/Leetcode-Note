@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int i=digits.size()-1;
+        digits[i]++;
+        for(int j=digits.size()-1;j>=0;j--){
+            if(digits[j]>=10){
+                if(j==0){
+                    digits.resize(i+2);
+                digits[0]=0;
+                for(int m=0;m<i+1;m++){
+                    digits[m+1]=digits[m];
+                }
+                digits[0]=1;
+                }
+            
+                else{
+                digits[j]=0;
+                digits[j-1]++;
+            }
+            }
+        }
+        
+        return digits;
+    }
+};
+//Given a non-empty array of digits representing a non-negative integer, plus one to the integer.
+//not optimal.
