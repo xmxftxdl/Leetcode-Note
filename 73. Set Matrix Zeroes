@@ -1,0 +1,24 @@
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        vector<bool>col(matrix.size(),true);
+        vector<bool>raw(matrix[0].size(),true);
+        for(int i=0;i<matrix.size();i++){
+            for(int j=0;j<matrix[0].size();j++)
+                if(matrix[i][j]==0){
+                    col[i]=false;
+                    raw[j]=false;
+                }
+        }
+        for(int i=0;i<col.size();i++){
+            if(col[i]==false)
+                for(int m=0;m<matrix[0].size();m++)
+                    matrix[i][m]=0;
+        }
+            for(int i=0;i<raw.size();i++){
+                if(raw[i]==false)
+                    for(int m=0;m<matrix.size();m++)
+                        matrix[m][i]=0;
+            }
+        }
+};
