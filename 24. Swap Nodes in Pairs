@@ -20,7 +20,6 @@ public:
 		   prev->next->next=cur;
 		   prev=cur;
 		   cur=cur->next;	
-           return head;
    	   }   
    	   return dummy->next;  
     }
