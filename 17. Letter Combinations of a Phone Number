@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<string>res;
+    string lettermap[10]={
+        "","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"
+    };
+    void backtracking(string &digit,int index,const string &s){
+        if(index==digit.length()){
+            res.push_back(s);
+            return;
+          }
+        char c=digit[index];
+        string letter=lettermap[c-'0'];
+        for(int i=0;i<letter.length();i++){
+            backtracking(digit,index+1,s+letter[i]);
+        }
+    }
+    vector<string> letterCombinations(string digits){
+        res.clear();
+        if(digits.length()==0)
+            return res;
+        backtracking(digits,0,"");
+        return res;
+    }
+};
