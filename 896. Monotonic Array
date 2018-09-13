@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) {
+        bool ispositive=true;
+        int i=0;
+        while(A[i]==A[i+1])
+            i++;
+        if(A[i]<A[i+1])
+            ispositive=true;
+        else
+            ispositive=false;
+        for(i;i<A.size()-1;i++){
+            if(A[i]<A[i+1]&&ispositive==false)
+                return false;
+            else if(A[i]>A[i+1]&&ispositive==true)
+                return false;
+        }
+        return true;     
+    }
+};
