@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>>res;
+        sort(nums.begin(),nums.end());
+        permutation(0,nums,res);
+        return res;
+    }
+    void permutation(int n, vector<int>num,vector<vector<int>>&res){
+        if(n==num.size()-1){
+        res.push_back(num);
+        return;
+        }
+        for(int i=n;i<num.size();i++){
+            if(i>n&&num[i]==num[n])
+                continue;
+            swap(num[i],num[n]);
+            permutation(n+1,num,res);
+          
+        }
+    }
+};
