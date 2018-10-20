@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string simplifyPath(string path) {
+        int start=0;
+        int end=0;
+        string str="";
+        stack<string>stack;
+        stack.push("/");
+        while(start<path.length()){
+            while (start<path.length()&&path[start]=='/')
+                  start++;
+            end=start;
+            while(end<path.length()&&path[end]!='/')
+                  {
+                  end++;
+                  }
+            string each=path.substr(start,end-start);
+                  if(each==".."){
+                      if(stack.top()!="/")
+                          stack.pop();
+                  }
+                  else if(each!="."&&each!=""){
+                      stack.push(each);
+                  }
+            start=end;
+        }
+        if(stack.size()==1)
+            return stack.top();
+        while(stack.size()>1)
+        {
+            str='/'+stack.top()+str;
+            stack.pop();
+        }
+        return str;
+   }                 
+};
