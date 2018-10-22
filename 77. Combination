@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<vector<int>> combine(int n, int k) {
+        vector<int>combine;
+        vector<vector<int>>res;
+        backtracking(1,n,k,combine,res);
+        return res;
+    }
+    void backtracking(int m,int n,int k,vector<int>&combine,vector<vector<int>>&res){
+        if(combine.size()==k)
+            res.push_back(combine);
+        for(int i=m;i<=n;i++){
+            combine.push_back(i);
+            backtracking(i+1,n,k,combine,res);
+            combine.pop_back();
+        }
+    }
+};
