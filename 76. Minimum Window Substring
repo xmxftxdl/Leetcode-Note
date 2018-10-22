@@ -1,0 +1,53 @@
+class Solution {
+public:
+    string minWindow(string S, string T) {
+        int begin=0;
+        int end=0;
+        int minstart=0;
+        int minend=0;
+        int minsize=INT_MAX;
+        string res;
+        vector<int>found(128,0);
+        vector<int>needfound(128,0);
+        for(int i=0;i<T.size();i++)
+        {
+            needfound[T[i]]++;
+        }
+        found[S[0]]++;
+        int count=T.size();
+        if(needfound[S[0]] >= found[S[0]])
+            count --;
+        while(true){
+            if(count==0)
+            {
+                while(found[S[begin]]>needfound[S[begin]])
+                {
+                    found[S[begin]]--;
+                    begin++;
+                }
+                int size=end-begin+1;
+                if(size<minsize)
+                {
+                    minstart=begin;
+                    minend=end;
+                    minsize=size;
+                }
+            }
+            if(end<S.size()){
+                end++;
+                found[S[end]]++;
+                if(needfound[S[end]]>=found[S[end]])
+                    count--;
+            }
+            else
+                 break;   
+        }
+        if(minsize==INT_MAX)
+            return "";
+        else
+        {
+            res=S.substr(minstart,minsize);
+            return res;
+        }
+    }
+};
