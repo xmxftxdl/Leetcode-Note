@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>>res(1,vector<int>());
+        int n;
+        int m;
+        for(int i=0;i<nums.size();i++){
+            n=res.size();
+            if(i==0||nums[i]!=nums[i-1]){
+                m=n;
+            for(int j=0;j<n;j++){
+                res.push_back(res[j]);
+                res.back().push_back(nums[i]);
+               }
+            }
+            else{
+                for(int j=m;j<n;j++){
+                res.push_back(res[j]);
+                res.back().push_back(nums[i]);
+               }
+                m=n;
+            }
+        }
+    return res;
+    }
+};
