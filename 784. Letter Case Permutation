@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<string> letterCasePermutation(string S) {
+        int len=S.length();
+        vector<string>res;
+        backtracking(res,0,len,S);
+        return res;
+    }
+    void backtracking(vector<string>&res,int i,int len,string S){
+        while(S[i]>=48&&S[i]<=57)
+              i++;
+        if(i>=len){
+            res.push_back(S);
+            return;
+        }
+        for(int j=0;j<=1;j++){
+                if(j==0)
+                {
+                if(S[i]>='A'&&S[i]<='Z')
+                    S[i]=S[i]+32;
+                backtracking(res,i+1,len,S);
+                }
+                else
+                {
+                if(S[i]>='a'&&S[i]<='z')
+                    S[i]=S[i]-32;
+                backtracking(res,i+1,len,S);
+                }
+        }
+    }
+};
