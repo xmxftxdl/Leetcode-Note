@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool exist(vector<vector<char>>& board, string word) {
+        int m=board.size();
+        if(m==0||word.length()==0)
+            return false;
+        int n=board[0].size();
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(board[i][j]==word[0]){
+                    vector<vector<bool>>flag(m,vector<bool>(n,false));
+                    if(judge(i,j,m,n,board,0,word,flag)==true)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+    bool judge(int i,int j,int m,int n,vector<vector<char>>&board,int k, string &word, vector<vector<bool>>&flag){
+        if(i==m||j==n||i<0||j<0||board[i][j]!=word[k]||flag[i][j]==true)
+            return false;
+        flag[i][j]=true;
+        if(k==word.size()-1)
+            return true;
+            bool res=judge(i+1,j,m,n,board,k+1,word,flag)||
+                     judge(i-1,j,m,n,board,k+1,word,flag)||
+                     judge(i,j+1,m,n,board,k+1,word,flag)||
+                     judge(i,j-1,m,n,board,k+1,word,flag);
+            flag[i][j]=false;
+            return res;
+    }
+};
