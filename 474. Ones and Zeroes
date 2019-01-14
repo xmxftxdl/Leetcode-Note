@@ -1,0 +1,28 @@
+class Solution {
+public:
+    pair<int,int>countnum(string s){
+        int zero=0;
+        int one=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='0'){
+                zero++;
+            }
+        }
+        one=s.length()-zero;
+        return make_pair(zero,one);
+        
+    }
+    int findMaxForm(vector<string>& strs, int m, int n) {
+       vector<vector<int>>rec;
+       rec = vector<vector<int>>(m + 1, vector<int>(n + 1, 0));
+        for (int count = 0; count < strs.size(); count++){
+            pair<int, int> p = countnum(strs[count]);
+            for (int i = m; i >= p.first; i--){
+                for (int j = n; j >= p.second; j--){                                        
+                        rec[i][j] = max(rec[i][j], 1 + rec[i - p.first][j - p.second]);
+                }
+            }
+        }
+        return rec[m][n];
+    }
+};
