@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<string> wordSubsets(vector<string>& A, vector<string>& B) {
+    int sizea=A.size();
+    int sizeb=B.size();
+    vector<vector<int>>tem(sizea,vector<int>(26.0));
+    vector<vector<int>>tem2(sizeb,vector<int>(26,0));
+    vector<int>num(26,0);
+    vector<string>res;
+    for(int i=0;i<sizea;i++){
+        for(int j=0;j<A[i].size();j++){
+            tem[i][A[i][j]-'a']++;
+        }
+    }
+    for(int i=0;i<sizeb;i++){
+        for(int j=0;j<B[i].size();j++){
+            tem2[i][B[i][j]-'a']++;  
+        }
+        for(int j=0;j<26;j++){
+            num[j]=max(num[j],tem2[i][j]);
+        }
+    }
+    for(int i=0;i<sizea;i++){
+        int flag=0;
+        for(int j=0;j<26;j++){
+            if(tem[i][j]<num[j]&&num[j]!=0)
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(!flag)
+            res.push_back(A[i]);
+    }
+        return res;
+    }
+};
