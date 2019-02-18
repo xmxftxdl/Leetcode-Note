@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int maximumGap(vector<int>& nums) {
+        int maxx=INT_MIN;
+        int minn=INT_MAX;
+        int n=nums.size();
+        if(n<2)
+            return 0;
+        int ans=0;
+        for(int i=0;i<n;i++)
+            maxx=max(maxx,nums[i]);
+        for(int i=0;i<n;i++)
+            minn=min(minn,nums[i]);
+        int s=(maxx-minn)/n+1;
+        int bullet=(maxx-minn)/s+1;
+        vector<int>bmax(bullet,minn-1);
+        vector<int>bmin(bullet,maxx+1);
+        for(int i=0;i<n;i++){
+            int idx=(nums[i]-minn)/s;
+            bmax[idx]=max(bmax[idx],nums[i]);
+            bmin[idx]=min(bmin[idx],nums[i]);
+        }
+        for(int i=0;i<n;i++){
+           while(bmax[i]==minn+1)i++;
+            int j=i+1;
+            if(j>=bullet)break;
+            while(bmin[j]==maxx+1)j++;
+            ans=max(ans,bmin[j]-bmax[i]);
+            i=j-1;
+        }
+        return ans;
+    }
+};
