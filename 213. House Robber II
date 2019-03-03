@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        int res;
+        if(n==0)
+            return 0;
+        if(n==1)
+            return nums[0];
+        res=max(robn(nums,0,n-1),robn(nums,1,n));
+        return res;
+    }
+    int robn(vector<int>&nums,int start,int end){
+        int plast=0;
+        int pplast=0;
+        for(int i=start;i<end;i++){
+            int tem=plast;
+            plast=max(pplast+nums[i],plast);
+            pplast=tem;
+        }
+        return plast;
+    }
+};
