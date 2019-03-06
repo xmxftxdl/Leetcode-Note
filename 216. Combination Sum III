@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<vector<int>>res;
+    vector<int>subarray;
+    vector<int>candidate;
+    vector<vector<int>> combinationSum3(int k, int n) {
+        for(int i=1;i<10;i++){
+        candidate.push_back(i);
+    }
+        dfs(k,n,0,0,candidate);
+        return res;
+    }
+    void dfs(int k,int n,int start,int sum,vector<int>candidate){
+        if(sum==n&&subarray.size()==k){
+        res.push_back(subarray);
+        return;
+        }
+        else if(sum>n||subarray.size()>k)
+            return;
+        else
+            for(int i=start;i<candidate.size();i++){
+                subarray.push_back(candidate[i]);
+                dfs(k,n,i+1,sum+candidate[i],candidate);
+                subarray.pop_back();
+            }
+    }
+};
