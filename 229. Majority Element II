@@ -1,0 +1,44 @@
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        if(nums.size()==0)
+            return nums;
+        vector<int>res;
+        int count1=0,count2=0,val1,val2;
+        for(auto val:nums){
+            if(val==val1)
+                count1++;
+            else if(val==val2){
+                count2++;
+            }
+            else if(count1==0)
+            {
+                count1++;
+                val1=val;
+            }
+            else if(count2==0){
+                count2++;
+                val2=val;
+            }
+            else
+            {
+                count1--;
+                count2--;
+            }
+        }
+        count1=0;count2=0;
+        for(auto i:nums){
+            if(i==val1)
+                count1++;
+            else if(i==val2)
+                count2++;
+        }
+        if(count1>nums.size()/3.0){
+            res.push_back(val1);
+        }
+        if(count2>nums.size()/3.0){
+            res.push_back(val2);
+        }
+        return res;
+    }
+};
